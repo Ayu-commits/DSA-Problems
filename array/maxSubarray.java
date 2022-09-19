@@ -1,0 +1,37 @@
+package array;
+// subarray contigous hoga
+// 1 -2 3 -1 2
+// to pehle 1 se -2 tk ka sum aur max karke dekh lo 1,-2 aur 3 tk le lo
+public class maxSubarray {
+    static int  maxSub(int arr[], int n)//O(N^2)
+    {
+        int res = 0;
+        for(int i =0;i<n;i++)
+        {
+            int curr = 0;
+            for(int j= i;j<n;j++)
+            {
+                curr = curr + arr[j];
+                res = Math.max(curr,res);
+            }
+        }
+        return res;
+    }
+    static int Opti( int arr[], int n)  //O(N)
+    {
+        int res = arr[0];
+        int maxEnding = arr[0];  // piche jo bhi value aarahe hai jyda waale wo save ho rahi
+        for(int i =1;i<n;i++)
+        {
+            maxEnding = Math.max(maxEnding+arr[i],arr[i]);
+            res = Math.max(maxEnding,res);
+        }
+        return res;
+    }
+    public static void main(String [] args)
+    {
+        int arr[] = {1, -2, 3, -1, 2}, n = 5;
+        System.out.println(Opti(arr,n));
+    }
+
+}
